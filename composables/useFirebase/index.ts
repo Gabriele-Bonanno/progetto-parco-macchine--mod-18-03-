@@ -15,7 +15,7 @@ export const useFirebase=() => {
 
       //prova secondo modifica
       const fireStore = getFirestore(app);
-      //prova modifica
+      //modifica linea
       const storage = getStorage(app)
       return {fireStore, storage,app}
     }
