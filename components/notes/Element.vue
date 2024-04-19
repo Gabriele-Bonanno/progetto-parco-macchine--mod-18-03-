@@ -23,17 +23,17 @@ const guastiStore = useGuasti();
     Problematica: {{ note.guasto }} <br />
     Data di apertura {{ note.data }}<br />
     <div v-if="note.stato=='risolto'"
-  class="p-2 rounded-md font-bold bg-green-600 xp-5 py-1 text-white"
+  class="p-2 rounded-md font-bold bg-green-600 xp-5 py-1 text-white text-center"
 >
 {{ note.stato }}
 </div>
 <div v-if="note.stato=='in lavorazione'"
-  class="p-2 rounded-md font-bold bg-yellow-600 xp-5 py-1 text-white"
+  class="p-2 rounded-md font-bold bg-yellow-600 xp-5 py-1 text-white text-center"
 >
 {{ note.stato }}
 </div>
 <div v-if="note.stato=='registrato'"
-  class="p-2 rounded-md font-bold bg-red-600 xp-5 py-1 text-white"
+  class="p-2 rounded-md font-bold bg-red-600 xp-5 py-1 text-white text-center"
 >
 {{ note.stato }}
 </div>

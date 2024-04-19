@@ -52,10 +52,8 @@ const numRisolto = computed(() => guastiStore.guastiGetters.filter(note => note.
     </div>
    
   </div>
-  
-
   <div v-else>
-    <NotesElement v-for="note in filteredNotes" :note="note"> </NotesElement>
+    <NotesElement v-for="note in filteredNotes.slice().reverse()" :note="note"> </NotesElement>
   </div>
    
 </template>

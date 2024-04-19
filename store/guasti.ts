@@ -2,6 +2,7 @@ import {defineStore} from "pinia"
 import type { Segnalazione } from "./models/strutturaGuasto";
 import { collection, addDoc,getDocs, deleteDoc,doc } from "firebase/firestore";
 import { useFirebase } from "~/composables";
+import { getFirestore, updateDoc } from "firebase/firestore";
 export const useGuasti = defineStore("guasti-store", {
   state: () => ({
     guasti: [] as Array<Segnalazione>,
@@ -57,15 +58,16 @@ export const useGuasti = defineStore("guasti-store", {
       return true;
     },
     
-    editGuasto(guastoId: string, stato1: string) {
-      const GuastoIdToBeUpdated = this.guasti.findIndex(
-        (segnalazione) => segnalazione.id === guastoId
-      );
-      console.log(GuastoIdToBeUpdated)
-      this.guasti[GuastoIdToBeUpdated].stato=stato1;
-      this.updateLocalStorage();
-      //if (response) this.inserisciGuasto(nome1,aula1, npc1, guasto1, stato1, data1);
-    },   
+  async editGuasto(guastoId: string, stato1: string) {
+const db = getFirestore();
+ try {
+    const guastoRef = doc(db, "guasti", guastoId);
+    await updateDoc(guastoRef, { stato: stato1 });
+    console.log("Document updated successfully");
+ } catch (error) {
+    console.error("Error updating document: ", error);
+ }
+},
     updateLocalStorage(){
       localStorage.setItem("guasti", JSON.stringify(this.guasti));
     },
